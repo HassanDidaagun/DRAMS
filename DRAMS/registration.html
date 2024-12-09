@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register for DRAMS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(180deg, #01594F, white);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .register-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            width: 90%;
+        }
+        .btn-primary {
+            background-color: #01594F;
+            border-color: #01594F;
+        }
+        .btn-primary:hover {
+            background-color: #014C42;
+            border-color: #014C42;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-card">
+        <h1 class="mb-4 text-center">Sign Up</h1>
+        <form id="registrationForm" action="registrationSuccess.html" method="POST">
+            <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phoneNumber" placeholder="Enter your phone number" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Create a password" required>
+            </div>
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="isOfficial" onclick="toggleOfficialFields()">
+                <label class="form-check-label" for="isOfficial">
+                    I am a Barangay Official
+                </label>
+            </div>
+            <div id="officialFields" class="hidden">
+                <div class="mb-3">
+                    <label for="position" class="form-label">Position</label>
+                    <select class="form-control" id="position" onchange="toggleOtherPosition()">
+                        <option value="">Select your position</option>
+                        <option value="Barangay Captain">Barangay Captain</option>
+                        <option value="Secretary">Barangay Secretary</option>
+                        <option value="Treasurer">Barangay Treasurer</option>
+                        <option value="Kagawad">Barangay Kagawad</option>
+                        <option value="SK Chairperson">SK Chairperson</option>
+                        <option value="Personnel">Barangay Personnel and General Services</option>
+                        <option value="Barangay Tanod">Barangay Tanod</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+                <div class="mb-3 hidden" id="otherPositionField">
+                    <label for="otherPosition" class="form-label">Specify your position</label>
+                    <input type="text" class="form-control" id="otherPosition" placeholder="Enter your position">
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="login.html" class="btn btn-primary btn-lg">Go Back</a>
+                <button type="submit" class="btn btn-primary btn-lg">Register</button>
+            </div>
+        </form>
+        <div class="text-center mt-4">
+            <p>Already have an account? <a href="login.html">Log In</a></p>
+            <p><a href="residentHome.html">Continue as Resident</a></p>
+        </div>
+    </div>
+    <script>
+        function toggleOfficialFields() {
+            const isOfficial = document.getElementById('isOfficial').checked;
+            document.getElementById('officialFields').classList.toggle('hidden', !isOfficial);
+        }
+
+        function toggleOtherPosition() {
+            const position = document.getElementById('position').value;
+            const otherPositionField = document.getElementById('otherPositionField');
+            otherPositionField.classList.toggle('hidden', position !== 'Others');
+        }
+
+        document.getElementById('registrationForm').addEventListener('submit', function (e) {
+            const isOfficial = document.getElementById('isOfficial').checked;
+            if (!isOfficial) {
+                e.preventDefault();
+                alert("Creating an account is for Barangay Officials only.");
+                window.location.href = "index.html";
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
