@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Document Logs</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #01594F, #ffffff);
+        }
+        .table-container {
+            margin-bottom: 50px;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .table {
+            background-color: #ffffff;
+        }
+        footer {
+            margin-top: auto;
+            background-color: #01594F;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-lg-5">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <button class="btn btn-dark me-3" onclick="history.back()" aria-label="Back">
+                    <i class="bi bi-arrow-left"></i>
+                </button>
+            </ul>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <a class="navbar-brand" href="barangayOfficialHome.html">DRAMS</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container my-5">
+        <h1 class="text-center text-white mb-4">View Document Logs</h1>
+
+        <!-- Search Bar -->
+        <div class="search-bar text-center">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search forms..." onkeyup="searchForms()">
+        </div>
+
+        <!-- Buttons for Adding New Record -->
+        <div class="mb-4 text-center">
+            <button class="btn btn-success" onclick="openFormModal('incidentReports')">Add Incident Report</button>
+            <button class="btn btn-success" onclick="openFormModal('documentRequests')">Add Document Request</button>
+            <button class="btn btn-success" onclick="openFormModal('complaintForms')">Add Complaint</button>
+        </div>
+
+        <!-- Incident Report Forms -->
+        <div class="table-container">
+            <h2 class="text-white">Incident Report Forms</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Form ID</th>
+                        <th>Submitted By</th>
+                        <th>Phone Number</th>
+                        <th>Date Submitted</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="incidentReports">
+                    <tr>
+                        <td>IR-001</td>
+                        <td>John Doe</td>
+                        <td>123-456-7890</td>
+                        <td>2024-12-01</td>
+                        <td>Resolved</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" onclick="editRow(this)">Edit</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Document Request Forms -->
+        <div class="table-container">
+            <h2 class="text-white">Document Request Forms</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Form ID</th>
+                        <th>Submitted By</th>
+                        <th>Phone Number</th>
+                        <th>Date Submitted</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="documentRequests">
+                    <tr>
+                        <td>DR-001</td>
+                        <td>Anna Belle</td>
+                        <td>555-123-4567</td>
+                        <td>2024-11-30</td>
+                        <td>Resolved</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" onclick="editRow(this)">Edit</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Complaint Forms -->
+        <div class="table-container">
+            <h2 class="text-white">Complaint Forms</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Form ID</th>
+                        <th>Submitted By</th>
+                        <th>Phone Number</th>
+                        <th>Date Submitted</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="complaintForms">
+                    <tr>
+                        <td>CF-001</td>
+                        <td>Emma Stone</td>
+                        <td>111-222-3333</td>
+                        <td>2024-12-04</td>
+                        <td>Pending</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" onclick="editRow(this)">Edit</button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5 mt-10">
+        <div class="container"><p class="m-0 text-center">&copy; 2024 DRAMS. All rights reserved.</p></div>
+    </footer>
+
+    <!-- Form Modal -->
+    <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="formModalLabel">Add New Record</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="recordForm">
+                        <div class="mb-3">
+                            <label for="formId" class="form-label">Form ID</label>
+                            <input type="text" id="formId" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="submittedBy" class="form-label">Submitted By</label>
+                            <input type="text" id="submittedBy" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phoneNumber" class="form-label">Phone Number</label>
+                            <input type="text" id="phoneNumber" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateSubmitted" class="form-label">Date Submitted</label>
+                            <input type="date" id="dateSubmitted" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Status</label>
+                            <input type="text" id="status" class="form-control" required>
+                        </div>
+                        <input type="hidden" id="tableId">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="saveRecord()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function searchForms() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const tables = ["incidentReports", "documentRequests", "complaintForms"];
+
+            tables.forEach(tableId => {
+                const rows = document.getElementById(tableId).getElementsByTagName("tr");
+                for (let i = 0; i < rows.length; i++) {
+                    const cells = rows[i].getElementsByTagName("td");
+                    let match = false;
+                    for (let j = 0; j < cells.length; j++) {
+                        if (cells[j].textContent.toLowerCase().includes(input)) {
+                            match = true;
+                            break;
+                        }
+                    }
+                    rows[i].style.display = match ? "" : "none";
+                }
+            });
+        }
+
+        function openFormModal(tableId) {
+            document.getElementById("tableId").value = tableId;
+            document.getElementById("recordForm").reset();
+            const modal = new bootstrap.Modal(document.getElementById("formModal"));
+            modal.show();
+        }
+
+        function saveRecord() {
+            const tableId = document.getElementById("tableId").value;
+            const tableBody = document.getElementById(tableId);
+
+            const formId = document.getElementById("formId").value;
+            const submittedBy = document.getElementById("submittedBy").value;
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const dateSubmitted = document.getElementById("dateSubmitted").value;
+            const status = document.getElementById("status").value;
+
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td>${formId}</td>
+                <td>${submittedBy}</td>
+                <td>${phoneNumber}</td>
+                <td>${dateSubmitted}</td>
+                <td>${status}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" onclick="editRow(this)">Edit</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteRow(this)">Delete</button>
+                </td>
+            `;
+            tableBody.appendChild(newRow);
+            const modal = bootstrap.Modal.getInstance(document.getElementById("formModal"));
+            modal.hide();
+        }
+
+        function deleteRow(button) {
+            const row = button.closest("tr");
+            row.remove();
+        }
+
+        function editRow(button) {
+            const row = button.closest("tr");
+            const cells = row.getElementsByTagName("td");
+
+            document.getElementById("formId").value = cells[0].textContent;
+            document.getElementById("submittedBy").value = cells[1].textContent;
+            document.getElementById("phoneNumber").value = cells[2].textContent;
+            document.getElementById("dateSubmitted").value = cells[3].textContent;
+            document.getElementById("status").value = cells[4].textContent;
+
+            const tableId = row.closest("tbody").id;
+            document.getElementById("tableId").value = tableId;
+
+            const modal = new bootstrap.Modal(document.getElementById("formModal"));
+            modal.show();
+
+            const saveButton = document.querySelector("#formModal .btn-primary");
+            saveButton.onclick = () => {
+                cells[0].textContent = document.getElementById("formId").value;
+                cells[1].textContent = document.getElementById("submittedBy").value;
+                cells[2].textContent = document.getElementById("phoneNumber").value;
+                cells[3].textContent = document.getElementById("dateSubmitted").value;
+                cells[4].textContent = document.getElementById("status").value;
+
+                const modalInstance = bootstrap.Modal.getInstance(document.getElementById("formModal"));
+                modalInstance.hide();
+            };
+        }
+    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

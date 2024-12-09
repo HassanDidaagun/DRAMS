@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #01594F, white);
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: #01594F;
+            border-color: #01594F;
+        }
+        .btn-primary:hover {
+            background-color: #014C42;
+            border-color: #014C42;
+        }
+        footer {
+            margin-top: auto;
+            background-color: #01594F;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-lg-5">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <!-- Back Icon -->
+                <button class="btn btn-dark me-3" onclick="history.back()" aria-label="Back">
+                    <i class="bi bi-arrow-left"></i>
+                </button>
+            </ul>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <a class="navbar-brand" href="#" onclick="history.back()">DRAMS</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Complaints or Feedback Form -->
+    <div class="form-container">
+        <h2 class="text-center mb-4">Feedback Form</h2>
+        <form action="feedbackFormSuccess.html" method="POST">
+            <!-- Name -->
+            <div class="mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <!-- Phone Number-->
+            <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Phone Number</label>
+                <input type="phoneNumber" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Enter your Phone Number" required>
+            </div>
+            <!-- Complaint or Feedback -->
+            <div class="mb-3">
+                <label for="feedback" class="form-label">Your Complaint or Feedback</label>
+                <textarea class="form-control" id="feedback" name="feedback" rows="5" placeholder="Describe your concern or feedback" required></textarea>
+            </div>
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer  class="py-5 mt-10">
+        <div class="container"><p class="m-0 text-center">&copy; 2024 DRAMS. All rights reserved.</p></div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
