@@ -52,6 +52,23 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <!-- Announcement Bell Icon -->
+                    <li class="nav-item dropdown me-3">
+                        <a class="nav-link position-relative" href="#" id="announcementBell" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bell" style="font-size: 1.5rem;"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                3 <!-- Example: number of new announcements -->
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="announcementBell" style="min-width: 300px;">
+                            <li class="dropdown-header fw-bold">Announcements</li>
+                            <li><a class="dropdown-item" href="#">Flooding Alert in Barangay A - Dec 12, 2024</a></li>
+                            <li><a class="dropdown-item" href="#">Power Interruption Scheduled - Dec 15, 2024</a></li>
+                            <li><a class="dropdown-item" href="#">Evacuation Plan Drill - Dec 18, 2024</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-center text-primary" href="detailedAnnouncements.html">View All Announcements</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.html">Log out</a></li>
                 </ul>
